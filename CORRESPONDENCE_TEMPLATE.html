@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Ticket Booking Confirmation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333333;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid #e1e4e8;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #0b2265 0%, #1e50bc 100%);
+      color: #ffffff;
+      padding: 25px 30px;
+      text-align: center;
+    }
+    .email-header h1 {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+      letter-spacing: 0.5px;
+    }
+    .email-header p {
+      margin: 0;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    .email-body {
+      padding: 30px;
+    }
+    .salutation {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1e293b;
+    }
+    .intro-text {
+      font-size: 15px;
+      color: #475569;
+      margin-bottom: 25px;
+    }
+    .ticket-card {
+      background-color: #f8fafc;
+      border: 1px dashed #0284c7;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+    .ticket-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .ticket-row:last-child {
+      border-bottom: none;
+    }
+    .ticket-label {
+      font-weight: 600;
+      color: #64748b;
+      font-size: 14px;
+    }
+    .ticket-value {
+      font-weight: 600;
+      color: #0f172a;
+      font-size: 14px;
+      text-align: right;
+    }
+    .total-highlight {
+      color: #0284c7;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .instructions-box {
+      background-color: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 12px 16px;
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: #1e40af;
+    }
+    .email-footer {
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+    .email-footer p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="email-container">
+    <!-- Header -->
+    <div class="email-header">
+      <h1>CineWave Entertainment</h1>
+      <p>Movie Ticket Booking Confirmation</p>
+    </div>
+
+    <!-- Body Content -->
+    <div class="email-body">
+      <div class="salutation">
+        Dear <pega:reference name=".CustomerName" />,
+      </div>
+
+      <p class="intro-text">
+        Your movie ticket booking has been <strong>successfully confirmed</strong>. Below are your verified booking details:
+      </p>
+
+      <!-- Booking Details Card -->
+      <div class="ticket-card">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Case ID:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 700; font-size: 14px; text-align: right;"><pega:reference name=".pyID" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Ticket ID:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".TicketID" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Movie Name:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".MovieName" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Show Date &amp; Time:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".ShowDate" /> at <pega:reference name=".ShowTime" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Show Type:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".ShowType" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Number of Tickets:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".NumberOfTickets" /></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 0; color: #64748b; font-weight: 600; font-size: 14px;">Seat Numbers:</td>
+            <td style="padding: 8px 0; color: #0f172a; font-weight: 600; font-size: 14px; text-align: right;"><pega:reference name=".SeatNumbers" /></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0 0 0; color: #0284c7; font-weight: 700; font-size: 16px;">Total Cost:</td>
+            <td style="padding: 10px 0 0 0; color: #0284c7; font-weight: 700; font-size: 16px; text-align: right;">$<pega:reference name=".TotalCost" format="pxCurrency" /></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Instructions -->
+      <div class="instructions-box">
+        <strong>Instructions:</strong> Please arrive at the theatre at least 15 minutes before show time and present this confirmation email or your Case/Ticket ID at the entry gate.
+      </div>
+
+      <p style="margin-bottom: 0; font-size: 14px; color: #475569;">
+        Thank you for choosing our services. Enjoy your movie!
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <p><strong>CineWave Entertainment Booking Support Team</strong></p>
+      <p>Need assistance? Contact support@cinewave.com | +1 (800) 555-CINE</p>
+      <p>&copy; 2026 CineWave Entertainment. All rights reserved.</p>
+    </div>
+  </div>
+
+</body>
+</html>

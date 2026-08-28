@@ -1,0 +1,184 @@
+{
+  "application": {
+    "name": "Movie Ticket Booking Management",
+    "description": "CineWave Entertainment application to manage movie ticket booking requests, seat availability, cost calculation, routing, and notifications.",
+    "organization": "CineWave",
+    "division": "Entertainment",
+    "unit": "Operations"
+  },
+  "caseTypes": [
+    {
+      "name": "Movie Ticket Request",
+      "id": "CineWave-Work-MovieTicketRequest",
+      "description": "End-to-end case lifecycle for requesting, validating, pricing, approving, routing, and confirming movie tickets.",
+      "sla": {
+        "goal": {
+          "days": 1,
+          "urgencyIncrease": 20
+        },
+        "deadline": {
+          "days": 2,
+          "urgencyIncrease": 30
+        }
+      },
+      "stages": [
+        {
+          "name": "Initial Stage",
+          "type": "Primary",
+          "processes": [
+            {
+              "name": "Submit Ticket Request Process",
+              "steps": [
+                {
+                  "name": "Submit Movie Ticket Request",
+                  "type": "Collect Information",
+                  "persona": "Customer",
+                  "fields": [
+                    { "name": "CustomerName", "type": "Text", "required": true },
+                    { "name": "CustomerEmail", "type": "Email", "required": true },
+                    { "name": "CustomerPhone", "type": "Phone", "required": true },
+                    { "name": "MovieName", "type": "Text", "required": true },
+                    { "name": "Genre", "type": "Text", "required": false },
+                    { "name": "ShowDate", "type": "Date", "required": true },
+                    { "name": "ShowTime", "type": "TimeOfDay", "required": true },
+                    { "name": "ShowType", "type": "PickList", "options": ["Standard", "Premium"], "required": true },
+                    { "name": "NumberOfTickets", "type": "Integer", "required": true, "minimum": 1 }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Availability",
+          "type": "Primary",
+          "processes": [
+            {
+              "name": "Check Availability and Pricing",
+              "steps": [
+                {
+                  "name": "Check Show Availability",
+                  "type": "Collect Information",
+                  "persona": "Booking Agent / System",
+                  "fields": [
+                    { "name": "SeatCapacity", "type": "Integer", "readOnly": true },
+                    { "name": "AvailableSeatsCount", "type": "Integer", "required": true },
+                    { "name": "SeatAvailabilityStatus", "type": "PickList", "options": ["Available", "Unavailable"], "required": true }
+                  ]
+                },
+                {
+                  "name": "Calculate Booking Cost",
+                  "type": "Data Transform / Automation",
+                  "description": "Calculates Total Cost = Ticket Price * Number of Tickets based on Show Type pricing.",
+                  "fields": [
+                    { "name": "TicketPrice", "type": "Currency", "required": true },
+                    { "name": "TotalCost", "type": "Currency", "calculated": true, "formula": "TicketPrice * NumberOfTickets" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Approval",
+          "type": "Primary",
+          "processes": [
+            {
+              "name": "Customer Confirmation Process",
+              "steps": [
+                {
+                  "name": "Review Booking Details",
+                  "type": "Collect Information",
+                  "persona": "Customer",
+                  "description": "Displays structured booking summary with read-only fields for customer verification.",
+                  "fields": [
+                    { "name": "CustomerName", "type": "Text", "readOnly": true },
+                    { "name": "MovieName", "type": "Text", "readOnly": true },
+                    { "name": "ShowDate", "type": "Date", "readOnly": true },
+                    { "name": "ShowTime", "type": "TimeOfDay", "readOnly": true },
+                    { "name": "ShowType", "type": "PickList", "readOnly": true },
+                    { "name": "NumberOfTickets", "type": "Integer", "readOnly": true },
+                    { "name": "TicketPrice", "type": "Currency", "readOnly": true },
+                    { "name": "TotalCost", "type": "Currency", "readOnly": true },
+                    { "name": "BookingStatus", "type": "PickList", "options": ["Confirmed", "Cancelled"], "required": true }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Booking Execution",
+          "type": "Primary",
+          "processes": [
+            {
+              "name": "Ticket Processing and Routing",
+              "steps": [
+                {
+                  "name": "Route by Show Type",
+                  "type": "Router",
+                  "logic": "If ShowType == 'Premium' then PremiumShowQueue else StandardShowQueue"
+                },
+                {
+                  "name": "Process Ticket Booking",
+                  "type": "Collect Information / Automation",
+                  "persona": "Fulfillment Staff",
+                  "fields": [
+                    { "name": "TicketID", "type": "Text", "required": true },
+                    { "name": "SeatNumbers", "type": "Text", "required": true },
+                    { "name": "BookingConfirmationStatus", "type": "PickList", "options": ["Booked", "Pending", "Failed"], "defaultValue": "Booked" }
+                  ]
+                },
+                {
+                  "name": "Notify Booking Confirmation",
+                  "type": "Send Email",
+                  "recipient": ".CustomerEmail",
+                  "subject": "Movie Ticket Booking Confirmed - [.pyID]",
+                  "template": "BookingConfirmationNotification"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Resolution",
+          "type": "Resolution",
+          "status": "Resolved-Completed"
+        }
+      ]
+    }
+  ],
+  "dataObjects": [
+    {
+      "name": "Movie",
+      "class": "CineWave-Data-Movie",
+      "properties": [
+        { "name": "MovieID", "type": "Text", "key": true },
+        { "name": "MovieName", "type": "Text" },
+        { "name": "Genre", "type": "Text" },
+        { "name": "DurationMinutes", "type": "Integer" },
+        { "name": "Language", "type": "Text" },
+        { "name": "Rating", "type": "Text" }
+      ]
+    },
+    {
+      "name": "Show",
+      "class": "CineWave-Data-Show",
+      "properties": [
+        { "name": "ShowID", "type": "Text", "key": true },
+        { "name": "MovieID", "type": "Text" },
+        { "name": "ShowDate", "type": "Date" },
+        { "name": "ShowTime", "type": "TimeOfDay" },
+        { "name": "ShowType", "type": "Text" },
+        { "name": "SeatCapacity", "type": "Integer" },
+        { "name": "AvailableSeats", "type": "Integer" },
+        { "name": "StandardPrice", "type": "Currency" },
+        { "name": "PremiumPrice", "type": "Currency" }
+      ]
+    }
+  ],
+  "workQueues": [
+    { "name": "PremiumShowQueue", "description": "Work queue for processing premium movie ticket requests" },
+    { "name": "StandardShowQueue", "description": "Work queue for processing standard movie ticket requests" }
+  ]
+}
