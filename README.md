@@ -8,7 +8,7 @@
 
 CineWave Entertainment needed to replace a fragmented manual booking process (email chains + spreadsheets) with a unified, automated **Movie Ticket Booking Management** system built on the **Pega Platform™**.
 
-This repository contains all design artifacts, configuration blueprints, the official Pega `.blueprint` file, live screenshots, implementation guides, email templates, demo video script, and test cases needed to scaffold, configure, and verify the complete application in a Pega Infinity environment.
+This repository contains all essential project design artifacts, the official Pega `.blueprint` file, live screenshots, implementation guides, demo video script, and test cases needed to scaffold, configure, and evaluate the complete application in a Pega Infinity environment.
 
 ---
 
@@ -68,16 +68,14 @@ Customer Submits Request
 ```
 Movie-Ticket-Booking-Management/
 ├── README.md                                          ← Project overview & architecture
-├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint Export File (for App Studio)
-├── PEGA_BLUEPRINT_SPECIFICATION.json                  ← Complete Pega Blueprint JSON Specification
+├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint File (for App Studio)
 ├── PEGA_IMPLEMENTATION_GUIDE.md                       ← Step-by-step App Studio configuration guide
-├── CORRESPONDENCE_TEMPLATE.html                       ← Automated booking confirmation email template
-├── TEST_CASES_AND_VALIDATION.md                       ← 33 test cases (positive, negative, SLA, routing)
 ├── PROJECT_SUBMISSION_REPORT.md                       ← Complete report for Harsh_Maurya.docx / PDF
 ├── DEMO_VIDEO_SCRIPT.md                               ← 2-to-3 minute video demonstration script & walkthrough
+├── TEST_CASES_AND_VALIDATION.md                       ← 33 test cases (positive, negative, SLA, routing)
+├── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
 ├── Screenshot 2026-08-28 153944.png                   ← Screenshot: App Studio Application Overview
-├── Screenshot 2026-08-28 154358.png                   ← Screenshot: Live Case Execution (M-3)
-└── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
+└── Screenshot 2026-08-28 154358.png                   ← Screenshot: Live Case Execution (M-3)
 ```
 
 ---
@@ -111,32 +109,6 @@ Movie-Ticket-Booking-Management/
 | US-009 | Define Booking SLA | Case Type Level | System (SLA) | ✅ Done |
 | US-010 | Route Booking Request by Show Type | Booking Execution | System (Router) | ✅ Done |
 | Conclusion | End-to-end automated case resolution & email dispatch | — | — | ✅ Done |
-
----
-
-## 🏗️ Key Technical Components
-
-| Component | Rule/Artifact Name | Type |
-| :--- | :--- | :--- |
-| Case Type | `Movie Ticket Request` | Rule-Obj-CaseType |
-| SLA | `MovieTicketRequestSLA` | Rule-Obj-ServiceLevel |
-| Data Transform (Init) | `InitializeCaseDefaults` | Rule-Obj-DataTransform |
-| Data Transform (Pricing) | `SetTicketPricingDT` | Rule-Obj-DataTransform |
-| Data Transform (Ticket ID) | `SetTicketID` | Rule-Obj-DataTransform |
-| Declare Expression | `CalcTotalCost` | Rule-Declare-Expressions |
-| Declare Expression | `CalcFinalCost` | Rule-Declare-Expressions |
-| Validate Rule | `ValidateCustomerInfo` | Rule-Obj-Validate |
-| Validate Rule | `ValidateBookingDetails` | Rule-Obj-Validate |
-| Validate Rule | `ValidateSeatAvailability` | Rule-Obj-Validate |
-| Validate Rule | `ValidateBookingDecision` | Rule-Obj-Validate |
-| Validate Rule | `ValidateFulfillmentDetails` | Rule-Obj-Validate |
-| Decision Table | `RouteByShowType` | Rule-Declare-DecisionTable |
-| Correspondence | `BookingConfirmationNotification` | Rule-Obj-Corr |
-| Correspondence | `BookingCancellationNotification` | Rule-Obj-Corr |
-| Data Object | `Movie` (`CineWave-Data-Movie`) | Data Object |
-| Data Object | `Show` (`CineWave-Data-Show`) | Data Object |
-| Work Queue | `PremiumShowQueue@CineWave` | Org/Security |
-| Work Queue | `StandardShowQueue@CineWave` | Org/Security |
 
 ---
 
