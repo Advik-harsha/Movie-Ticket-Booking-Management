@@ -8,7 +8,7 @@
 
 CineWave Entertainment needed to replace a fragmented manual booking process (email chains + spreadsheets) with a unified, automated **Movie Ticket Booking Management** system built on the **Pega Platform™**.
 
-This repository contains all design artifacts, configuration blueprints, official Pega `.blueprint` file, live screenshots, implementation guides, email templates, and test cases needed to scaffold, configure, and verify the complete application in a Pega Infinity environment.
+This repository contains all design artifacts, configuration blueprints, the official Pega `.blueprint` file, live screenshots, implementation guides, email templates, demo video script, and test cases needed to scaffold, configure, and verify the complete application in a Pega Infinity environment.
 
 ---
 
@@ -68,16 +68,16 @@ Customer Submits Request
 ```
 Movie-Ticket-Booking-Management/
 ├── README.md                                          ← Project overview & architecture
-├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint File (for import)
+├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint Export File (for App Studio)
 ├── PEGA_BLUEPRINT_SPECIFICATION.json                  ← Complete Pega Blueprint JSON Specification
-├── PEGA_IMPLEMENTATION_GUIDE.md                       ← Step-by-step App Studio configuration
-├── CORRESPONDENCE_TEMPLATE.html                       ← Booking confirmation email template
+├── PEGA_IMPLEMENTATION_GUIDE.md                       ← Step-by-step App Studio configuration guide
+├── CORRESPONDENCE_TEMPLATE.html                       ← Automated booking confirmation email template
 ├── TEST_CASES_AND_VALIDATION.md                       ← 33 test cases (positive, negative, SLA, routing)
 ├── PROJECT_SUBMISSION_REPORT.md                       ← Complete report for Harsh_Maurya.docx / PDF
+├── DEMO_VIDEO_SCRIPT.md                               ← 2-to-3 minute video demonstration script & walkthrough
 ├── Screenshot 2026-08-28 153944.png                   ← Screenshot: App Studio Application Overview
 ├── Screenshot 2026-08-28 154358.png                   ← Screenshot: Live Case Execution (M-3)
-├── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
-└── push_to_github.ps1                                 ← Helper script for git operations
+└── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
 ```
 
 ---
