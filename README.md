@@ -8,7 +8,7 @@
 
 CineWave Entertainment needed to replace a fragmented manual booking process (email chains + spreadsheets) with a unified, automated **Movie Ticket Booking Management** system built on the **Pega Platform™**.
 
-This repository contains all design artifacts, configuration blueprints, implementation guides, email templates, and test cases needed to scaffold, configure, and verify the complete application in a Pega Infinity v8.7+ environment.
+This repository contains all design artifacts, configuration blueprints, official Pega `.blueprint` file, live screenshots, implementation guides, email templates, and test cases needed to scaffold, configure, and verify the complete application in a Pega Infinity environment.
 
 ---
 
@@ -26,14 +26,14 @@ Customer Submits Request
          ▼
 ┌─────────────────────┐
 │  Availability Stage │  ← BookingAgent verifies seats
-│ Check Availability  │    Validation: seat count vs request
+│ Search Availability │    Validation: seat count vs request
 │ Calculate Cost      │    Declare Expr: TotalCost, FinalCost
 └────────┬────────────┘
          │
          ▼
 ┌─────────────────────┐
 │   Approval Stage    │  ← Customer reviews full summary
-│  Review Details     │    Decision: Confirm or Cancel
+│  Review Summary     │    Decision: Confirm or Cancel
 └────────┬────────────┘
          │
     ┌────┴────┐
@@ -48,8 +48,8 @@ Customer Submits Request
 │  Premium/IMAX/4DX ─┼─► PremiumShowQueue
 │  Standard ─────────┼─► StandardShowQueue
 │  ┌─────────────┐   │
-│  │Process Ticket│  │
-│  │ FulfillStaff│  │
+│  │Allocate Seat│   │
+│  │ FulfillStaff│   │
 │  └──────┬──────┘   │
 │  ┌─────────────┐   │
 │  │ Send Email  │   │
@@ -67,14 +67,31 @@ Customer Submits Request
 
 ```
 Movie-Ticket-Booking-Management/
-├── README.md                          ← This file — project overview
-├── PEGA_BLUEPRINT_SPECIFICATION.json  ← Complete Pega Blueprint for import
-├── PEGA_IMPLEMENTATION_GUIDE.md       ← Step-by-step App Studio configuration
-├── CORRESPONDENCE_TEMPLATE.html       ← Booking confirmation email template
-├── TEST_CASES_AND_VALIDATION.md       ← 33 test cases (positive, negative, SLA, routing)
-├── PROJECT_SUBMISSION_REPORT.md       ← Full submission report for Harsh_Maurya.docx
-└── push_to_github.ps1                 ← Helper script for git operations
+├── README.md                                          ← Project overview & architecture
+├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint File (for import)
+├── PEGA_BLUEPRINT_SPECIFICATION.json                  ← Complete Pega Blueprint JSON Specification
+├── PEGA_IMPLEMENTATION_GUIDE.md                       ← Step-by-step App Studio configuration
+├── CORRESPONDENCE_TEMPLATE.html                       ← Booking confirmation email template
+├── TEST_CASES_AND_VALIDATION.md                       ← 33 test cases (positive, negative, SLA, routing)
+├── PROJECT_SUBMISSION_REPORT.md                       ← Complete report for Harsh_Maurya.docx / PDF
+├── Screenshot 2026-08-28 153944.png                   ← Screenshot: App Studio Application Overview
+├── Screenshot 2026-08-28 154358.png                   ← Screenshot: Live Case Execution (M-3)
+├── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
+└── push_to_github.ps1                                 ← Helper script for git operations
 ```
+
+---
+
+## 📸 Application Screenshots
+
+### 1. Case Lifecycle in App Studio
+![Case Lifecycle Configuration](./Screenshot%202026-08-28%20180122.png)
+
+### 2. Application Dashboard
+![Application Overview](./Screenshot%202026-08-28%20153944.png)
+
+### 3. Live Case Execution (M-3)
+![Live Case Instance](./Screenshot%202026-08-28%20154358.png)
 
 ---
 
@@ -144,19 +161,14 @@ Movie-Ticket-Booking-Management/
 
 ### Step 2 — Import Blueprint & Build App
 1. App Studio → **Application** → **New Application** → **Build from Blueprint**.
-2. Upload `PEGA_BLUEPRINT_SPECIFICATION.json`.
+2. Upload `Ticketing and Booking 20260828T092006441 GMT.blueprint`.
 3. Set Organization: `CineWave` | Division: `Entertainment` | Unit: `Operations`.
 4. Click **Build Now** → **Submit** → **Go to new application**.
 
-### Step 3 — Configure Rules
-Follow [`PEGA_IMPLEMENTATION_GUIDE.md`](./PEGA_IMPLEMENTATION_GUIDE.md) section by section.
-
-### Step 4 — Run Tests
-Execute test cases from [`TEST_CASES_AND_VALIDATION.md`](./TEST_CASES_AND_VALIDATION.md) and fill in sign-off table.
-
-### Step 5 — Submit
-- Convert [`PROJECT_SUBMISSION_REPORT.md`](./PROJECT_SUBMISSION_REPORT.md) to `Harsh_Maurya.docx` / PDF.
-- Add screenshots and paste this GitHub URL into the internship portal **"Add Github Link"** field.
+### Step 3 — Configure Rules & Test
+1. Follow [`PEGA_IMPLEMENTATION_GUIDE.md`](./PEGA_IMPLEMENTATION_GUIDE.md) for rule configuration.
+2. Execute test cases from [`TEST_CASES_AND_VALIDATION.md`](./TEST_CASES_AND_VALIDATION.md).
+3. Review the complete submission report in [`PROJECT_SUBMISSION_REPORT.md`](./PROJECT_SUBMISSION_REPORT.md).
 
 ---
 
