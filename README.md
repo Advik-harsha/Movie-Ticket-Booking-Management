@@ -8,7 +8,7 @@
 
 CineWave Entertainment needed to replace a fragmented manual booking process (email chains + spreadsheets) with a unified, automated **Movie Ticket Booking Management** system built on the **Pega Platform™**.
 
-This repository contains all essential project design artifacts, the official Pega `.blueprint` file, live screenshots, implementation guides, demo video script, and test cases needed to scaffold, configure, and evaluate the complete application in a Pega Infinity environment.
+This repository contains all essential project design artifacts, the latest official Pega `.blueprint` file, live screenshots, implementation guides, demo video script, test cases, and the official submission PDF report needed to scaffold, configure, and evaluate the complete application in a Pega Infinity environment.
 
 ---
 
@@ -68,10 +68,10 @@ Customer Submits Request
 ```
 Movie-Ticket-Booking-Management/
 ├── README.md                                          ← Project overview & architecture
-├── Ticketing and Booking 20260828T092006441 GMT.blueprint  ← Official Pega Blueprint File (for App Studio)
+├── NIP_Project_Submission_Harsh_Maurya.pdf            ← Official PDF Submission Report
+├── Ticketing and Booking 20260830T140833185 GMT.blueprint  ← Latest Official Pega Blueprint Export File
 ├── PEGA_IMPLEMENTATION_GUIDE.md                       ← Step-by-step App Studio configuration guide
-├── PROJECT_SUBMISSION_REPORT.md                       ← Complete report for Harsh_Maurya.docx / PDF
-├── DEMO_VIDEO_SCRIPT.md                               ← 2-to-3 minute video demonstration script & walkthrough
+├── PROJECT_SUBMISSION_REPORT.md                       ← Complete report markdown source
 ├── TEST_CASES_AND_VALIDATION.md                       ← 33 test cases (positive, negative, SLA, routing)
 ├── Screenshot 2026-08-28 180122.png                   ← Screenshot: Case Lifecycle Configuration
 ├── Screenshot 2026-08-28 153944.png                   ← Screenshot: App Studio Application Overview
@@ -133,14 +133,14 @@ Movie-Ticket-Booking-Management/
 
 ### Step 2 — Import Blueprint & Build App
 1. App Studio → **Application** → **New Application** → **Build from Blueprint**.
-2. Upload `Ticketing and Booking 20260828T092006441 GMT.blueprint`.
+2. Upload `Ticketing and Booking 20260830T140833185 GMT.blueprint`.
 3. Set Organization: `CineWave` | Division: `Entertainment` | Unit: `Operations`.
 4. Click **Build Now** → **Submit** → **Go to new application**.
 
 ### Step 3 — Configure Rules & Test
 1. Follow [`PEGA_IMPLEMENTATION_GUIDE.md`](./PEGA_IMPLEMENTATION_GUIDE.md) for rule configuration.
 2. Execute test cases from [`TEST_CASES_AND_VALIDATION.md`](./TEST_CASES_AND_VALIDATION.md).
-3. Review the complete submission report in [`PROJECT_SUBMISSION_REPORT.md`](./PROJECT_SUBMISSION_REPORT.md).
+3. Review the complete submission report in [`PROJECT_SUBMISSION_REPORT.md`](./PROJECT_SUBMISSION_REPORT.md) and [`NIP_Project_Submission_Harsh_Maurya.pdf`](./NIP_Project_Submission_Harsh_Maurya.pdf).
 
 ---
 
